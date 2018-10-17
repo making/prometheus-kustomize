@@ -11,5 +11,21 @@
       "name": "additional-scrape-configs",
       "key": "prometheus-additional.yml"
     }
+  },
+  {
+    "op": "add",
+    "path": "/spec/storage",
+    "value": {
+      "volumeClaimTemplate": {
+        "spec": {
+          "storageClassName": "standard",
+          "resources": {
+            "requests": {
+              "storage": "10Gi"
+            }
+          }
+        }
+      }
+    }
   }
 ]
