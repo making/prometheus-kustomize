@@ -1,0 +1,9 @@
+- job_name: "node-exporter"
+  kubernetes_sd_configs:
+  - role: node
+  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+  relabel_configs:
+  - source_labels: [__meta_kubernetes_node_address_InternalIP]
+    target_label: __address__
+    regex: (.*)
+    replacement: $1:9100

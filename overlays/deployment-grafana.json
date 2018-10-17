@@ -1,0 +1,40 @@
+[
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "mountPath": "/grafana-dashboard-definitions/0/micrometer",
+      "name": "grafana-dashboard-micrometer",
+      "readOnly": false
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/volumes/-",
+    "value": {
+      "configMap": {
+        "name": "grafana-dashboard-micrometer"
+      },
+      "name": "grafana-dashboard-micrometer"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "mountPath": "/grafana-dashboard-definitions/0/hystrix",
+      "name": "grafana-dashboard-hystrix",
+      "readOnly": false
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/volumes/-",
+    "value": {
+      "configMap": {
+        "name": "grafana-dashboard-hystrix"
+      },
+      "name": "grafana-dashboard-hystrix"
+    }
+  }
+]

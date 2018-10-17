@@ -1,0 +1,15 @@
+[
+  {
+    "op": "replace",
+    "path": "/spec/replicas",
+    "value": 1
+  },
+  {
+    "op": "add",
+    "path": "/spec/additionalScrapeConfigs",
+    "value": {
+      "name": "additional-scrape-configs",
+      "key": "prometheus-additional.yml"
+    }
+  }
+]

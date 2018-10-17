@@ -1,0 +1,27 @@
+bases:
+- ../base
+patchesJson6902:
+- target:
+    group: monitoring.coreos.com
+    version: v1
+    kind: Alertmanager
+    name: main
+  path: alertmanager-main.json
+- target:
+    group: monitoring.coreos.com
+    version: v1
+    kind: Prometheus
+    name: k8s
+  path: prometheus-k8s.json
+- target:
+    group: rbac.authorization.k8s.io
+    version: v1
+    kind: ClusterRole
+    name: prometheus-k8s
+  path: clusterrole-prometheus-k8s.json
+- target:
+    group: apps
+    version: v1beta2
+    kind: Deployment
+    name: grafana
+  path: deployment-grafana.json
