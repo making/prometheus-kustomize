@@ -36,5 +36,24 @@
       },
       "name": "grafana-dashboard-hystrix"
     }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "mountPath": "/grafana-dashboard-definitions/0/ingress-nginx",
+      "name": "grafana-dashboard-ingress-nginx",
+      "readOnly": false
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/volumes/-",
+    "value": {
+      "configMap": {
+        "name": "grafana-dashboard-ingress-nginx"
+      },
+      "name": "grafana-dashboard-ingress-nginx"
+    }
   }
 ]

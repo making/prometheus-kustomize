@@ -3,8 +3,12 @@ resources:
 - grafana-micrometer.yml
 # kubectl create -n monitoring configmap grafana-dashboard-hystrix --from-file=grafana/hystrix.json --dry-run -oyaml > grafana-hystrix.yml
 - grafana-hystrix.yml
+# kubectl create -n monitoring configmap grafana-dashboard-ingress-nginx --from-file=grafana/ingress-nginx.json --dry-run -oyaml > grafana-ingress-nginx.yml
+- grafana-ingress-nginx.yml
 # kubectl create -n monitoring secret generic additional-scrape-configs --from-file=prometheus/prometheus-additional.yml --dry-run -oyaml > additional-scrape-configs.yml
 - additional-scrape-configs.yml
+# kubectl create -n monitoring secret generic alertmanager-main --from-file=alertmanager/alertmanager.yaml --dry-run -oyaml > alertmanager-secret.yml
+- alertmanager-secret.yml
 - ../prometheus-operator/contrib/kube-prometheus/manifests/00namespace-namespace.yaml
 - ../prometheus-operator/contrib/kube-prometheus/manifests/0prometheus-operator-0alertmanagerCustomResourceDefinition.yaml
 - ../prometheus-operator/contrib/kube-prometheus/manifests/0prometheus-operator-0prometheusCustomResourceDefinition.yaml
@@ -17,7 +21,7 @@ resources:
 - ../prometheus-operator/contrib/kube-prometheus/manifests/0prometheus-operator-serviceAccount.yaml
 - ../prometheus-operator/contrib/kube-prometheus/manifests/0prometheus-operator-serviceMonitor.yaml
 - ../prometheus-operator/contrib/kube-prometheus/manifests/alertmanager-alertmanager.yaml
-- ../prometheus-operator/contrib/kube-prometheus/manifests/alertmanager-secret.yaml
+#- ../prometheus-operator/contrib/kube-prometheus/manifests/alertmanager-secret.yaml
 - ../prometheus-operator/contrib/kube-prometheus/manifests/alertmanager-service.yaml
 - ../prometheus-operator/contrib/kube-prometheus/manifests/alertmanager-serviceAccount.yaml
 - ../prometheus-operator/contrib/kube-prometheus/manifests/alertmanager-serviceMonitor.yaml

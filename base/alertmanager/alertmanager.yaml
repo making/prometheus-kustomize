@@ -1,0 +1,10 @@
+global:
+# The directory from which notification templates are read.
+templates:
+# The root node of the routing tree
+route:
+  receiver: default
+  # Child routes
+  routes: []
+# A list of notification receivers
+receivers: [{"name":"default","slack_configs":[{"api_url":"https://hooks.slack.com/services/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", "channel":"alert", "send_resolved":true}]}]
