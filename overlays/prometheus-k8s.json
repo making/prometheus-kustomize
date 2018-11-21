@@ -6,6 +6,11 @@
   },
   {
     "op": "add",
+    "path": "/spec/retention",
+    "value": "7d"
+  },
+  {
+    "op": "add",
     "path": "/spec/additionalScrapeConfigs",
     "value": {
       "name": "additional-scrape-configs",
