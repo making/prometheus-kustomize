@@ -2,6 +2,24 @@ bases:
 - ../base
 patchesJson6902:
 - target:
+    group: ""
+    version: v1
+    kind: Service
+    name: alertmanager-main
+  path: service-alertmanager-main.yml
+- target:
+    group: ""
+    version: v1
+    kind: Service
+    name: grafana
+  path: service-grafana.yml
+- target:
+    group: ""
+    version: v1
+    kind: Service
+    name: prometheus-k8s
+  path: service-prometheus-k8s.yml
+- target:
     group: monitoring.coreos.com
     version: v1
     kind: Alertmanager

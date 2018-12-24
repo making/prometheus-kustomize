@@ -17,6 +17,12 @@ data:
           "version": "5.0.0"
         },
         {
+          "type": "datasource",
+          "id": "prometheus",
+          "name": "Prometheus",
+          "version": "5.0.0"
+        },
+        {
           "type": "panel",
           "id": "singlestat",
           "name": "Singlestat",
@@ -2679,13 +2685,12 @@ data:
           }
         }
       ],
-      "refresh": false,
+      "refresh": "30s",
       "schemaVersion": 16,
       "style": "dark",
       "tags": [
         "java",
-        "micrometer",
-        "k8s"
+        "micrometer"
       ],
       "templating": {
         "list": [
@@ -2797,7 +2802,7 @@ data:
         ]
       },
       "timezone": "",
-      "title": "Micrometer Summary (k8s)",
+      "title": "Micrometer",
       "uid": "mWRmEy1ik",
       "version": 1
     }

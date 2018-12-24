@@ -41,6 +41,25 @@
     "op": "add",
     "path": "/spec/template/spec/containers/0/volumeMounts/-",
     "value": {
+      "mountPath": "/grafana-dashboard-definitions/0/spring-cloud-gateway",
+      "name": "grafana-dashboard-spring-cloud-gateway",
+      "readOnly": false
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/volumes/-",
+    "value": {
+      "configMap": {
+        "name": "grafana-dashboard-spring-cloud-gateway"
+      },
+      "name": "grafana-dashboard-spring-cloud-gateway"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
       "mountPath": "/grafana-dashboard-definitions/0/ingress-nginx",
       "name": "grafana-dashboard-ingress-nginx",
       "readOnly": false

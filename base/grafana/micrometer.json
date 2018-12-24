@@ -2682,13 +2682,12 @@
       }
     }
   ],
-  "refresh": false,
+  "refresh": "30s",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
     "java",
-    "micrometer",
-    "k8s"
+    "micrometer"
   ],
   "templating": {
     "list": [
@@ -2800,7 +2799,7 @@
     ]
   },
   "timezone": "",
-  "title": "Micrometer Summary (k8s)",
+  "title": "Micrometer",
   "uid": "mWRmEy1ik",
   "version": 1
 }

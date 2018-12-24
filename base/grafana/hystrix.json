@@ -1194,8 +1194,7 @@
   "style": "dark",
   "tags": [
     "java",
-    "micrometer",
-    "k8s"
+    "micrometer"
   ],
   "templating": {
     "list": [
@@ -1318,7 +1317,7 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -1347,7 +1346,7 @@
     ]
   },
   "timezone": "",
-  "title": "Micrometer Hystrix (k8s)",
+  "title": "Hystrix",
   "uid": "OPdOPqnmk",
   "version": 16
 }

@@ -1,0 +1,15 @@
+- op: add
+  path: /metadata/annotations
+  value:
+    spring.cloud.gateway/routes: |
+      predicates:
+      - Host=grafana.k8s.bosh.tokyo
+      filters:
+      - name: Hystrix
+        args:
+          name: monitoring/grafana
+          fallbackUri: forward:/error/503
+      - name: Retry
+        args:
+          retries: 3
+          statuses: BAD_GATEWAY
