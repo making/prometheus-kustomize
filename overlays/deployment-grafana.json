@@ -41,6 +41,25 @@
     "op": "add",
     "path": "/spec/template/spec/containers/0/volumeMounts/-",
     "value": {
+      "mountPath": "/grafana-dashboard-definitions/0/zipkin",
+      "name": "grafana-dashboard-zipkin",
+      "readOnly": false
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/volumes/-",
+    "value": {
+      "configMap": {
+        "name": "grafana-dashboard-zipkin"
+      },
+      "name": "grafana-dashboard-zipkin"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
       "mountPath": "/grafana-dashboard-definitions/0/spring-cloud-gateway",
       "name": "grafana-dashboard-spring-cloud-gateway",
       "readOnly": false

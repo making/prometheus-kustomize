@@ -15,3 +15,12 @@
   static_configs:
   - targets:
     - wavefront-proxy-exporter.cfapps.io:443
+- job_name: "zipkin"
+  scrape_interval: 30s
+  scrape_timeout: 10s
+  metrics_path: /actuator/prometheus
+  scheme: https
+  static_configs:
+  - targets:
+    - zipkin.dev.ik.am:443
+

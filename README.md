@@ -1,19 +1,23 @@
 ```
 kubectl create -n monitoring configmap grafana-dashboard-micrometer \
   --from-file=base/grafana/micrometer.json \
-  --dry-run -oyaml > grafana-micrometer.yml
+  --dry-run -oyaml > base/grafana-micrometer.yml
 
 kubectl create -n monitoring configmap grafana-dashboard-hystrix \
   --from-file=base/grafana/hystrix.json \
-  --dry-run -oyaml > grafana-hystrix.yml
+  --dry-run -oyaml > base/grafana-hystrix.yml
+
+kubectl create -n monitoring configmap grafana-dashboard-zipkin \
+  --from-file=base/grafana/zipkin.json \
+  --dry-run -oyaml > base/grafana-zipkin.yml
 
 kubectl create -n monitoring configmap grafana-dashboard-spring-cloud-gateway \
   --from-file=base/grafana/spring-cloud-gateway.json \
-  --dry-run -oyaml > grafana-spring-cloud-gateway.yml
+  --dry-run -oyaml > base/grafana-spring-cloud-gateway.yml
 
 kubectl create -n monitoring configmap grafana-dashboard-ingress-nginx \
   --from-file=base/grafana/ingress-nginx.json \
-  --dry-run -oyaml > grafana-ingress-nginx.yml
+  --dry-run -oyaml > base/grafana-ingress-nginx.yml
 
 kubectl create -n monitoring configmap grafana-dashboard-pks \
   --from-file=wavefront-proxy-exporter/grafana/overview.json \
