@@ -1,3 +1,6 @@
 [submodule "prometheus-operator"]
 	path = prometheus-operator
 	url = https://github.com/coreos/prometheus-operator.git
+[submodule "wavefront-proxy-exporter"]
+	path = wavefront-proxy-exporter
+	url = https://github.com/making/wavefront-proxy-exporter.git

@@ -74,5 +74,24 @@
       },
       "name": "grafana-dashboard-ingress-nginx"
     }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "mountPath": "/grafana-dashboard-definitions/0/pks",
+      "name": "grafana-dashboard-pks",
+      "readOnly": false
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/volumes/-",
+    "value": {
+      "configMap": {
+        "name": "grafana-dashboard-pks"
+      },
+      "name": "grafana-dashboard-pks"
+    }
   }
 ]
