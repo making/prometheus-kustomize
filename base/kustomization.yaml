@@ -7,6 +7,7 @@ resources:
 - grafana-pks.yml
 - additional-scrape-configs.yml
 - alertmanager-secret.yml
+- ingress-grafana.yml
 - ../prometheus-operator/contrib/kube-prometheus/manifests/00namespace-namespace.yaml
 - ../prometheus-operator/contrib/kube-prometheus/manifests/0prometheus-operator-0alertmanagerCustomResourceDefinition.yaml
 - ../prometheus-operator/contrib/kube-prometheus/manifests/0prometheus-operator-0prometheusCustomResourceDefinition.yaml
