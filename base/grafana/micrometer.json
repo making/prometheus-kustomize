@@ -1,31 +1,4 @@
 {
-  "__inputs": [],
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "5.2.4"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph",
-      "version": "5.0.0"
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "5.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "singlestat",
-      "name": "Singlestat",
-      "version": "5.0.0"
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -43,8 +16,7 @@
   "editable": true,
   "gnetId": 3308,
   "graphTooltip": 0,
-  "id": null,
-  "iteration": 1539471355833,
+  "iteration": 1548779074846,
   "links": [],
   "panels": [
     {
@@ -232,7 +204,7 @@
       "type": "row"
     },
     {
-      "collapsed": false,
+      "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -240,726 +212,728 @@
         "y": 1
       },
       "id": 36,
-      "panels": [],
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "$datasource",
+          "decimals": null,
+          "description": "The number of processors available to the Java virtual machine",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 0,
+            "y": 2
+          },
+          "id": 3,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": " CPU",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "expr": "max(system_cpu_count{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"})",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 240
+            }
+          ],
+          "thresholds": "",
+          "title": "Processor Count (Max)",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "",
+          "fill": 3,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 8,
+            "y": 2
+          },
+          "id": 4,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "system_cpu_usage{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
+              "refId": "A",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "The sum of the number of runnable entities queued to available processors and the number of runnable entities running on the available processors averaged over a period of time",
+          "fill": 3,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 16,
+            "y": 2
+          },
+          "id": 34,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "system_load_average_1m{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
+              "refId": "A",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU Load Average",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
       "repeat": null,
       "title": "CPU Metrics",
       "type": "row"
     },
     {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
-      "datasource": "$datasource",
-      "decimals": null,
-      "description": "The number of processors available to the Java virtual machine",
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 0,
-        "y": 2
-      },
-      "id": 3,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": " CPU",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "max(system_cpu_count{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"})",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "",
-          "refId": "A",
-          "step": 240
-        }
-      ],
-      "thresholds": "",
-      "title": "Processor Count (Max)",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "avg"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "$datasource",
-      "description": "",
-      "fill": 1,
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 8,
-        "y": 2
-      },
-      "id": 4,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "system_cpu_usage{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
-          "refId": "A",
-          "step": 20
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "CPU Usage",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "$datasource",
-      "description": "The sum of the number of runnable entities queued to available processors and the number of runnable entities running on the available processors averaged over a period of time",
-      "fill": 1,
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 2
-      },
-      "id": 34,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "system_load_average_1m{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
-          "refId": "A",
-          "step": 20
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "CPU Load Average",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "collapsed": false,
+      "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 2
       },
       "id": 37,
-      "panels": [],
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "Number of trace level events that made it to the logs",
+          "fill": 3,
+          "gridPos": {
+            "h": 8,
+            "w": 4,
+            "x": 0,
+            "y": 3
+          },
+          "height": "",
+          "id": 32,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "logback_events_total{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\", level=\"trace\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
+              "refId": "A",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Trace log event",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "Number of debug level events that made it to the logs",
+          "fill": 3,
+          "gridPos": {
+            "h": 8,
+            "w": 4,
+            "x": 4,
+            "y": 3
+          },
+          "id": 30,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "logback_events_total{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\", level=\"debug\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
+              "refId": "A",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Debug log event",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "Number of info level events that made it to the logs",
+          "fill": 3,
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 8,
+            "y": 3
+          },
+          "id": 33,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "logback_events_total{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\", level=\"info\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
+              "refId": "A",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Info log event",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "Number of warn level events that made it to the logs",
+          "fill": 3,
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 14,
+            "y": 3
+          },
+          "id": 29,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "logback_events_total{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\", level=\"warn\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
+              "refId": "A",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Warn log event",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "Number of error level events that made it to the logs",
+          "fill": 3,
+          "gridPos": {
+            "h": 8,
+            "w": 4,
+            "x": 20,
+            "y": 3
+          },
+          "id": 31,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "logback_events_total{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\", level=\"error\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
+              "refId": "A",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Error log event",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
       "repeat": null,
       "title": "Logback Metrics",
       "type": "row"
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "$datasource",
-      "description": "Number of trace level events that made it to the logs",
-      "fill": 1,
-      "gridPos": {
-        "h": 8,
-        "w": 4,
-        "x": 0,
-        "y": 10
-      },
-      "height": "",
-      "id": 32,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "logback_events_total{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\", level=\"trace\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
-          "refId": "A",
-          "step": 20
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Trace log event",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "$datasource",
-      "description": "Number of debug level events that made it to the logs",
-      "fill": 1,
-      "gridPos": {
-        "h": 8,
-        "w": 4,
-        "x": 4,
-        "y": 10
-      },
-      "id": 30,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "logback_events_total{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\", level=\"debug\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
-          "refId": "A",
-          "step": 20
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Debug log event",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "$datasource",
-      "description": "Number of info level events that made it to the logs",
-      "fill": 1,
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 8,
-        "y": 10
-      },
-      "id": 33,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "logback_events_total{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\", level=\"info\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
-          "refId": "A",
-          "step": 20
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Info log event",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "$datasource",
-      "description": "Number of warn level events that made it to the logs",
-      "fill": 1,
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 14,
-        "y": 10
-      },
-      "id": 29,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "logback_events_total{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\", level=\"warn\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
-          "refId": "A",
-          "step": 20
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Warn log event",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "$datasource",
-      "description": "Number of error level events that made it to the logs",
-      "fill": 1,
-      "gridPos": {
-        "h": 8,
-        "w": 4,
-        "x": 20,
-        "y": 10
-      },
-      "id": 31,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "logback_events_total{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\", level=\"error\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
-          "refId": "A",
-          "step": 20
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Error log event",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 18
+        "y": 3
       },
       "id": 38,
       "panels": [],
@@ -974,12 +948,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "The peak live thread count since the Java virtual machine started or peak was reset",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 19
+        "y": 4
       },
       "id": 10,
       "legend": {
@@ -1006,7 +980,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jvm_threads_peak{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
+          "expr": "jvm_threads_peak_threads{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
@@ -1061,12 +1035,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "The current number of live daemon threads",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 19
+        "y": 4
       },
       "id": 11,
       "legend": {
@@ -1093,7 +1067,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jvm_threads_daemon{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
+          "expr": "jvm_threads_daemon_threads{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
@@ -1148,12 +1122,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "The current number of live threads including both daemon and non-daemon threads",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 19
+        "y": 4
       },
       "id": 12,
       "legend": {
@@ -1180,7 +1154,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jvm_threads_live{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
+          "expr": "jvm_threads_live_threads{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
@@ -1234,7 +1208,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 26
+        "y": 11
       },
       "id": 39,
       "panels": [],
@@ -1249,12 +1223,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "An estimate of the number of buffers in the pool",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 27
+        "y": 12
       },
       "id": 13,
       "legend": {
@@ -1336,12 +1310,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "An estimate of the memory that the Java virtual machine is using for this buffer pool",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 27
+        "y": 12
       },
       "id": 14,
       "legend": {
@@ -1364,7 +1338,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -1423,12 +1397,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "An estimate of the total capacity of the buffers in this pool",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 27
+        "y": 12
       },
       "id": 15,
       "legend": {
@@ -1451,7 +1425,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -1510,12 +1484,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "The maximum amount of memory in bytes that can be used for memory management",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 34
+        "y": 19
       },
       "id": 18,
       "legend": {
@@ -1538,7 +1512,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -1597,12 +1571,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "The amount of used memory",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 34
+        "y": 19
       },
       "id": 16,
       "legend": {
@@ -1625,7 +1599,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -1685,12 +1659,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "The amount of memory in bytes that is committed for  the Java virtual machine to use",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 34
+        "y": 19
       },
       "id": 17,
       "legend": {
@@ -1713,7 +1687,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -1771,7 +1745,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 41
+        "y": 26
       },
       "id": 40,
       "panels": [],
@@ -1786,12 +1760,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "Max size of old generation memory pool",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 42
+        "y": 27
       },
       "id": 19,
       "legend": {
@@ -1814,7 +1788,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -1873,12 +1847,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "Size of old generation memory pool after a full GC",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 42
+        "y": 27
       },
       "id": 20,
       "legend": {
@@ -1901,7 +1875,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -1960,12 +1934,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "Count of positive increases in the size of the old generation memory pool before GC to after GC",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 42
+        "y": 27
       },
       "id": 21,
       "legend": {
@@ -1988,7 +1962,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -2047,12 +2021,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "Incremented for an increase in the size of the young generation memory pool after one GC to before the next",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 49
+        "y": 34
       },
       "id": 22,
       "legend": {
@@ -2075,7 +2049,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -2134,12 +2108,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "Time spent in GC pause",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 49
+        "y": 34
       },
       "id": 23,
       "legend": {
@@ -2162,7 +2136,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -2221,12 +2195,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "Time spent in GC pause",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 49
+        "y": 34
       },
       "id": 24,
       "legend": {
@@ -2249,7 +2223,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -2307,7 +2281,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 56
+        "y": 41
       },
       "id": 41,
       "panels": [],
@@ -2322,12 +2296,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "The number of classes that are currently loaded in the Java virtual machine",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 57
+        "y": 42
       },
       "id": 25,
       "legend": {
@@ -2354,7 +2328,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jvm_classes_loaded{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
+          "expr": "jvm_classes_loaded_classes{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
@@ -2409,12 +2383,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "The total number of classes unloaded since the Java virtual machine has started execution",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 57
+        "y": 42
       },
       "id": 26,
       "legend": {
@@ -2441,7 +2415,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jvm_classes_unloaded_total{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
+          "expr": "jvm_classes_unloaded_classes_total{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{namespace}}/{{job}}/{{pod}}",
@@ -2495,7 +2469,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 64
+        "y": 49
       },
       "id": 42,
       "panels": [],
@@ -2510,14 +2484,14 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "Count of servlet requests",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 65
+        "y": 50
       },
-      "id": 27,
+      "id": 43,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -2544,7 +2518,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "http_server_requests_seconds_count{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
+          "expr": "rate(http_server_requests_seconds_count{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}[5m])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{method}} {{uri}} - {{status}}/{{namespace}}/{{job}}/{{pod}}",
@@ -2599,12 +2573,12 @@
       "dashes": false,
       "datasource": "$datasource",
       "description": "Timer of servlet requests",
-      "fill": 1,
+      "fill": 3,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 65
+        "y": 50
       },
       "id": 28,
       "legend": {
@@ -2680,6 +2654,197 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 57
+      },
+      "id": 46,
+      "panels": [],
+      "title": "HTTP Client Metrics",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "description": "Count of servlet requests",
+      "fill": 3,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 58
+      },
+      "id": 27,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rate(http_client_requests_seconds_count{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}[5m])",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{method}} {{uri}} - {{status}}/{{namespace}}/{{job}}/{{pod}}",
+          "refId": "A",
+          "step": 30
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "HTTP Requests Count",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "description": "Timer of servlet requests",
+      "fill": 3,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 58
+      },
+      "id": 47,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "http_client_requests_seconds_max{namespace=~\"$namespace\",job=~\"$job\",pod=~\"$pod\"}",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{method}} {{uri}} - {{status}}/{{namespace}}/{{job}}/{{pod}}",
+          "refId": "A",
+          "step": 30
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Max HTTP Requests Time",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
   "refresh": "30s",
@@ -2692,24 +2857,25 @@
   "templating": {
     "list": [
       {
-          "current": {
-              "text": "Prometheus",
-              "value": "Prometheus"
-          },
-          "hide": 0,
-          "label": null,
-          "name": "datasource",
-          "options": [
-
-          ],
-          "query": "prometheus",
-          "refresh": 1,
-          "regex": "",
-          "type": "datasource"
+        "current": {
+          "text": "prometheus",
+          "value": "prometheus"
+        },
+        "hide": 0,
+        "label": null,
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "text": "blog",
+          "value": "blog"
+        },
         "datasource": "$datasource",
         "hide": 0,
         "includeAll": false,
@@ -2729,7 +2895,10 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "text": "blog-api-service",
+          "value": "blog-api-service"
+        },
         "datasource": "$datasource",
         "hide": 0,
         "includeAll": false,
@@ -2749,7 +2918,10 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
         "datasource": "$datasource",
         "hide": 0,
         "includeAll": true,
