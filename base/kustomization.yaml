@@ -5,6 +5,7 @@ resources:
 - grafana-spring-cloud-gateway.yml
 - grafana-ingress-nginx.yml
 - grafana-pks.yml
+- grafana-secret.yml
 - additional-scrape-configs.yml
 - alertmanager-secret.yml
 - ingress-grafana.yml

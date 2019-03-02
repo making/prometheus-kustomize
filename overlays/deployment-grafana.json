@@ -112,5 +112,20 @@
       },
       "name": "grafana-dashboard-pks"
     }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/env",
+    "value": [
+      {
+        "name": "GF_SECURITY_ADMIN_PASSWORD",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "grafana-secret",
+            "key": "grafana-password"
+          }
+        }
+      }
+    ]
   }
 ]

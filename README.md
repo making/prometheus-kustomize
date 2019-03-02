@@ -34,7 +34,12 @@ kubectl create -n monitoring secret generic additional-scrape-configs \
 
 kubectl create -n monitoring secret generic alertmanager-main \
   --from-file=base/alertmanager/alertmanager.yaml \
-  --dry-run -oyaml > alertmanager-secret.yml
+  --dry-run -oyaml > base/alertmanager-secret.yml
+
+GF_SECURITY_ADMIN_PASSWORD=..........
+kubectl create -n monitoring secret generic grafana-secret \
+  --from-literal=grafana-password=${GF_SECURITY_ADMIN_PASSWORD} \
+  --dry-run -oyaml > base/grafana-secret.yml
 
 kustomize build overlays | kubectl apply -f -							
 ```
