@@ -1,20 +1,27 @@
+# - job_name: "node-exporter"
+#   kubernetes_sd_configs:
+#   - role: node
+#   bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+#   relabel_configs:
+#   - source_labels: [__meta_kubernetes_node_address_InternalIP]
+#     target_label: __address__
+#     regex: (.*)
+#     replacement: $1:9100
 - job_name: "node-exporter"
-  kubernetes_sd_configs:
-  - role: node
-  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
-  relabel_configs:
-  - source_labels: [__meta_kubernetes_node_address_InternalIP]
-    target_label: __address__
-    regex: (.*)
-    replacement: $1:9100
-- job_name: "wavefront-proxy"
   scrape_interval: 30s
-  scrape_timeout: 10s
-  metrics_path: /actuator/prometheus
-  scheme: https
-  static_configs:
-  - targets:
-    - wavefront-proxy-exporter.cfapps.io:443
+  dns_sd_configs:
+  - names:
+    - "q-s4.*.bosh"
+    type: "A"
+    port: 9100
+# - job_name: "wavefront-proxy"
+#   scrape_interval: 30s
+#   scrape_timeout: 10s
+#   metrics_path: /actuator/prometheus
+#   scheme: https
+#   static_configs:
+#   - targets:
+#     - wavefront-proxy-exporter.cfapps.io:443
 - job_name: "zipkin"
   scrape_interval: 30s
   scrape_timeout: 10s
