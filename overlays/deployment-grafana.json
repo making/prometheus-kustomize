@@ -98,6 +98,25 @@
     "op": "add",
     "path": "/spec/template/spec/containers/0/volumeMounts/-",
     "value": {
+      "mountPath": "/grafana-dashboard-definitions/0/system-overview",
+      "name": "grafana-dashboard-system-overview",
+      "readOnly": false
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/volumes/-",
+    "value": {
+      "configMap": {
+        "name": "grafana-dashboard-system-overview"
+      },
+      "name": "grafana-dashboard-system-overview"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
       "mountPath": "/grafana-dashboard-definitions/0/pks",
       "name": "grafana-dashboard-pks",
       "readOnly": false

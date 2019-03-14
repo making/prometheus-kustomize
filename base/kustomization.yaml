@@ -4,6 +4,7 @@ resources:
 - grafana-zipkin.yml
 - grafana-spring-cloud-gateway.yml
 - grafana-ingress-nginx.yml
+- grafana-system-overview.yml
 - grafana-pks.yml
 - grafana-secret.yml
 - additional-scrape-configs.yml

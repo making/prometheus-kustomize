@@ -19,6 +19,10 @@ kubectl create -n monitoring configmap grafana-dashboard-ingress-nginx \
   --from-file=base/grafana/ingress-nginx.json \
   --dry-run -oyaml > base/grafana-ingress-nginx.yml
 
+kubectl create -n monitoring configmap grafana-dashboard-system-overview \
+  --from-file=base/grafana/system-overview.json \
+  --dry-run -oyaml > base/grafana-system-overview.yml
+
 kubectl create -n monitoring configmap grafana-dashboard-pks \
   --from-file=wavefront-proxy-exporter/grafana/overview.json \
   --from-file=wavefront-proxy-exporter/grafana/namespace.json \
