@@ -27,6 +27,15 @@ kubectl create -n monitoring configmap grafana-dashboard-postgres \
   --from-file=base/grafana/postgres-overview.json \
   --dry-run -oyaml > base/grafana-postgres.yml
 
+kubectl create -n monitoring configmap grafana-dashboard-bosh \
+  --from-file=base/grafana/bosh-jobs.json \
+  --from-file=base/grafana/bosh-overview.json \
+  --from-file=base/grafana/bosh-processes.json \
+  --from-file=base/grafana/bosh-system-disk-performance.json \
+  --from-file=base/grafana/bosh-system-disk-space.json \
+  --from-file=base/grafana/bosh-system-overview.json \
+  --dry-run -oyaml > base/grafana-bosh.yml
+
 kubectl create -n monitoring configmap grafana-dashboard-pks \
   --from-file=wavefront-proxy-exporter/grafana/overview.json \
   --from-file=wavefront-proxy-exporter/grafana/namespace.json \
