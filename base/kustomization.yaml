@@ -6,6 +6,7 @@ resources:
 - grafana-ingress-nginx.yml
 - grafana-system-overview.yml
 - grafana-pks.yml
+- grafana-postgres.yml
 - grafana-secret.yml
 - additional-scrape-configs.yml
 - alertmanager-secret.yml

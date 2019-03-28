@@ -23,6 +23,10 @@ kubectl create -n monitoring configmap grafana-dashboard-system-overview \
   --from-file=base/grafana/system-overview.json \
   --dry-run -oyaml > base/grafana-system-overview.yml
 
+kubectl create -n monitoring configmap grafana-dashboard-postgres \
+  --from-file=base/grafana/postgres-overview.json \
+  --dry-run -oyaml > base/grafana-postgres.yml
+
 kubectl create -n monitoring configmap grafana-dashboard-pks \
   --from-file=wavefront-proxy-exporter/grafana/overview.json \
   --from-file=wavefront-proxy-exporter/grafana/namespace.json \

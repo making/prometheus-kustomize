@@ -14,14 +14,12 @@
     - "q-s4.*.bosh"
     type: "A"
     port: 9100
-- job_name: "bosh"
-  scrape_interval: 2m
-  scrape_timeout: 1m
+- job_name: "postgres"
   dns_sd_configs:
   - names:
     - "q-s4.uaa-db.*.cfcr.bosh"
     type: "A"
-    port: 9190
+    port: 9187
 # - job_name: "wavefront-proxy"
 #   scrape_interval: 30s
 #   scrape_timeout: 10s
