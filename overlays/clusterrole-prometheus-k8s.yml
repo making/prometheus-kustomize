@@ -1,0 +1,9 @@
+- op: add
+  path: /rules/0/resources/-
+  value: nodes
+- op: add
+  path: /rules/0/verbs/-
+  value: list
+- op: add
+  path: /rules/0/verbs/-
+  value: watch

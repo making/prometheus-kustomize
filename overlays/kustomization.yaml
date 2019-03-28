@@ -36,7 +36,7 @@ patchesJson6902:
     version: v1
     kind: ClusterRole
     name: prometheus-k8s
-  path: clusterrole-prometheus-k8s.json
+  path: clusterrole-prometheus-k8s.yml
 - target:
     group: apps
     version: v1beta2
