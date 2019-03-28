@@ -1,0 +1,20 @@
+- op: replace
+  path: /spec/replicas
+  value: 1
+- op: add
+  path: /spec/retention
+  value: 7d
+- op: add
+  path: /spec/additionalScrapeConfigs
+  value:
+    key: prometheus-additional.yml
+    name: additional-scrape-configs
+- op: add
+  path: /spec/storage
+  value:
+    volumeClaimTemplate:
+      spec:
+        resources:
+          requests:
+            storage: 10Gi
+        storageClassName: standard

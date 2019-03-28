@@ -1,0 +1,6 @@
+- op: replace
+  path: /spec/replicas
+  value: 1
+- op: add
+  path: /spec/externalUrl
+  value: https://alertmanager.k8s.bosh.tokyo

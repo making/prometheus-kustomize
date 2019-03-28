@@ -24,13 +24,13 @@ patchesJson6902:
     version: v1
     kind: Alertmanager
     name: main
-  path: alertmanager-main.json
+  path: alertmanager-main.yml
 - target:
     group: monitoring.coreos.com
     version: v1
     kind: Prometheus
     name: k8s
-  path: prometheus-k8s.json
+  path: prometheus-k8s.yml
 - target:
     group: rbac.authorization.k8s.io
     version: v1
