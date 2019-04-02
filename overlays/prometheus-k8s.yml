@@ -5,6 +5,9 @@
   path: /spec/retention
   value: 7d
 - op: add
+  path: /spec/externalUrl
+  value: https://prometheus.k8s.bosh.tokyo
+- op: add
   path: /spec/additionalScrapeConfigs
   value:
     key: prometheus-additional.yml
