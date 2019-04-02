@@ -37,12 +37,12 @@ kubectl create -n monitoring configmap grafana-dashboard-bosh \
   --dry-run -oyaml > base/grafana-bosh.yml
 
 kubectl create -n monitoring configmap grafana-dashboard-pks \
-  --from-file=wavefront-proxy-exporter/grafana/overview.json \
-  --from-file=wavefront-proxy-exporter/grafana/namespace.json \
-  --from-file=wavefront-proxy-exporter/grafana/node.json \
-  --from-file=wavefront-proxy-exporter/grafana/pod.json \
-  --from-file=wavefront-proxy-exporter/grafana/pod-container.json \
-  --from-file=wavefront-proxy-exporter/grafana/deployment.json \
+  --from-file=./base/wavefront-proxy-exporter/grafana/overview.json \
+  --from-file=./base/wavefront-proxy-exporter/grafana/namespace.json \
+  --from-file=./base/wavefront-proxy-exporter/grafana/node.json \
+  --from-file=./base/wavefront-proxy-exporter/grafana/pod.json \
+  --from-file=./base/wavefront-proxy-exporter/grafana/pod-container.json \
+  --from-file=./base/wavefront-proxy-exporter/grafana/deployment.json \
   --dry-run -o yaml > base/grafana-pks.yml
 
 kubectl create -n monitoring secret generic additional-scrape-configs \
