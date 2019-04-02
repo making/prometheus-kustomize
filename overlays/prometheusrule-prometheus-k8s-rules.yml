@@ -1,0 +1,159 @@
+- op: add
+  path: /spec/groups/-
+  value:
+    name: bosh-jobs
+    rules:
+      - alert: BOSHJobUnhealthy
+        expr: max(bosh_job_healthy{bosh_job_name!~"^compilation.*",bosh_deployment!="bosh-health-check"}) by(environment, bosh_name, bosh_deployment, bosh_job_name, bosh_job_index) < 1
+        for: 5m
+        labels:
+          service: bosh-job
+          severity: warning
+        annotations:
+          summary: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` is unhealthy"
+          description: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` is being reported unhealthy"
+
+      - alert: BOSHJobExtendedUnhealthy
+        expr: max(bosh_job_healthy{bosh_job_name!~"^compilation.*",bosh_deployment!="bosh-health-check"}) by(environment, bosh_name, bosh_deployment, bosh_job_name, bosh_job_index) < 1
+        for: 30m
+        labels:
+          service: bosh-job
+          severity: critical
+        annotations:
+          summary: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` has been unhealthy for a long time"
+          description: "BOSH job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` has been reported unhealthy for more than 30m"
+
+- op: add
+  path: /spec/groups/-
+  value:
+    name: bosh-processes
+    rules:
+      - alert: BOSHJobProcessUnhealthy
+        expr: max(bosh_job_process_healthy{bosh_job_name!~"^compilation.*",bosh_deployment!="bosh-health-check"}) by(environment, bosh_name, bosh_deployment, bosh_job_name, bosh_job_index, bosh_job_process_name) < 1
+        for: 5m
+        labels:
+          service: bosh-job-process
+          severity: warning
+        annotations:
+          summary: "BOSH Job Process `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}/{{$labels.bosh_job_process_name}}` is unhealthy"
+          description: "BOSH Job Process `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}/{{$labels.bosh_job_process_name}}` is being reported unhealthy"
+
+      - alert: BOSHJobProcessExtendedUnhealthy
+        expr: max(bosh_job_process_healthy{bosh_job_name!~"^compilation.*",bosh_deployment!="bosh-health-check"}) by(environment, bosh_name, bosh_deployment, bosh_job_name, bosh_job_index, bosh_job_process_name) < 1
+        for: 30m
+        labels:
+          service: bosh-job-process
+          severity: critical
+        annotations:
+          summary: "BOSH Job Process `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}/{{$labels.bosh_job_process_name}}` has been unhealthy for a long time"
+          description: "BOSH Job Process `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}/{{$labels.bosh_job_process_name}}` has been reported unhealthy for more than 30m"
+
+- op: add
+  path: /spec/groups/-
+  value:
+    name: bosh-system
+    rules:
+      - alert: BOSHJobHighCPULoad
+        expr: avg(bosh_job_load_avg01{bosh_job_name!~"^compilation.*",bosh_deployment!="bosh-health-check"}) by(environment, bosh_name, bosh_deployment, bosh_job_name, bosh_job_index) > 5
+        for: 10m
+        labels:
+          service: bosh-job
+          severity: warning
+        annotations:
+          summary: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` is reporting a high CPU load average"
+          description: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` had a CPU load average (1m) above 5 for 10m: {{$value}}"
+
+      - alert: BOSHJobLowFreeRAM
+        expr: avg(bosh_job_mem_percent{bosh_job_name!~"^compilation.*",bosh_deployment!="bosh-health-check"}) by(environment, bosh_name, bosh_deployment, bosh_job_name, bosh_job_index) > 90
+        for: 10m
+        labels:
+          service: bosh-job
+          severity: warning
+        annotations:
+          summary: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` is reporting low free RAM"
+          description: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` has used more than 90% of its RAM for 10m: {{$value}}%"
+
+      - alert: BOSHJobLowSwap
+        expr: avg(bosh_job_swap_percent{bosh_job_name!~"^compilation.*",bosh_deployment!="bosh-health-check"}) by(environment, bosh_name, bosh_deployment, bosh_job_name, bosh_job_index) > 90
+        for: 10m
+        labels:
+          service: bosh-job
+          severity: warning
+        annotations:
+          summary: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` is reporting low swap"
+          description: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` has used more than 90% of its swap for 10m: {{$value}}%"
+
+      - alert: BOSHJobSystemDiskFull
+        expr: avg(bosh_job_system_disk_percent{bosh_job_name!~"^compilation.*",bosh_deployment!="bosh-health-check"}) by(environment, bosh_name, bosh_deployment, bosh_job_name, bosh_job_index) > 90
+        for: 30m
+        labels:
+          service: bosh-job
+          severity: critical
+        annotations:
+          summary: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` is running out of system disk"
+          description: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` has used more than 90% of its system disk for 30m: {{$value}}%"
+
+      - alert: BOSHJobEphemeralDiskFull
+        expr: avg(bosh_job_ephemeral_disk_percent{bosh_job_name!~"^compilation.*",bosh_deployment!="bosh-health-check"}) by(environment, bosh_name, bosh_deployment, bosh_job_name, bosh_job_index) > 80
+        for: 30m
+        labels:
+          service: bosh-job
+          severity: critical
+        annotations:
+          summary: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` is running out of ephemeral disk"
+          description: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` has used more than 80% of its ephemeral disk for 30ms: {{$value}}%"
+
+      - alert: BOSHJobPersistentDiskFull
+        expr: avg(bosh_job_persistent_disk_percent{bosh_job_name!~"^compilation.*",bosh_deployment!="bosh-health-check"}) by(environment, bosh_name, bosh_deployment, bosh_job_name, bosh_job_index) > 90
+        for: 30m
+        labels:
+          service: bosh-job
+          severity: critical
+        annotations:
+          summary: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` is running out of persistent disk"
+          description: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` has used more than 90% of its persistent disk for 30m: {{$value}}%"
+
+      - alert: BOSHJobPersistentDiskInodesExhausted
+        expr: avg(bosh_job_persistent_disk_inode_percent{bosh_job_name!~"^compilation.*",bosh_deployment!="bosh-health-check"}) by(environment, bosh_name, bosh_deployment, bosh_job_name, bosh_job_index) > 90
+        for: 30m
+        labels:
+          service: bosh-job
+          severity: critical
+        annotations:
+          summary: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` is running out of inodes"
+          description: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` has used more than 90% of its persistent disk inodes for 30m: {{$value}}%"
+
+- op: add
+  path: /spec/groups/-
+  value:
+    name: bosh-system-predict
+    rules:
+      - alert: BOSHJobSystemDiskPredictWillFill
+        expr: predict_linear(bosh_job_system_disk_percent{bosh_job_name!~"^compilation.*",bosh_deployment!="bosh-health-check"}[1h], 14400) > 90
+        for: 30m
+        labels:
+          service: bosh-job
+          severity: warning
+        annotations:
+          summary: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` will run out of system disk in {{humanizeDuration 14400}}"
+          description: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` system disk will be used more than 90% in {{humanizeDuration 14400}}"
+
+      - alert: BOSHJobEphemeralDiskPredictWillFill
+        expr: predict_linear(bosh_job_ephemeral_disk_percent{bosh_job_name!~"^(compilation|smoke-tests).*"}[1h], 14400) > 80
+        for: 30m
+        labels:
+          service: bosh-job
+          severity: warning
+        annotations:
+          summary: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` will run out of ephemeral disk in {{humanizeDuration 14400}}"
+          description: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` ephemeral disk will be used more than 80% in {{humanizeDuration 14400}}"
+
+      - alert: BOSHJobPersistentDiskPredictWillFill
+        expr: predict_linear(bosh_job_persistent_disk_percent{bosh_job_name!~"^compilation.*",bosh_deployment!="bosh-health-check"}[1h], 14400) > 90
+        for: 30m
+        labels:
+          service: bosh-job
+          severity: warning
+        annotations:
+          summary: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` will run out of persistent disk in {{humanizeDuration 14400}}"
+          description: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` persistent disk will be used more than 90% in {{humanizeDuration 14400}}"

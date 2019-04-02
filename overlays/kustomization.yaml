@@ -43,3 +43,9 @@ patchesJson6902:
     kind: Deployment
     name: grafana
   path: deployment-grafana.yml
+- target:
+    group: monitoring.coreos.com
+    version: v1
+    kind: PrometheusRule
+    name: prometheus-k8s-rules
+  path: prometheusrule-prometheus-k8s-rules.yml
