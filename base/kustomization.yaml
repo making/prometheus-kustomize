@@ -5,7 +5,7 @@ resources:
 - grafana-spring-cloud-gateway.yml
 - grafana-ingress-nginx.yml
 - grafana-system-overview.yml
-- grafana-pks.yml
+#- grafana-pks.yml
 - grafana-postgres.yml
 - grafana-bosh.yml
 - grafana-secret.yml
