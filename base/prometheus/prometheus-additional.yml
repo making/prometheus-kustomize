@@ -35,4 +35,7 @@
   static_configs:
   - targets:
     - zipkin.dev.ik.am:443
-
+    labels:
+      namespace: bosh-azure
+      job: zipkin
+      pod: zipkin

@@ -58,5 +58,6 @@ kubectl create -n monitoring secret generic grafana-secret \
   --from-literal=grafana-password=${GF_SECURITY_ADMIN_PASSWORD} \
   --dry-run -oyaml > base/grafana-secret.yml
 
-kustomize build overlays | kubectl apply -f -							
+kubectl kustomize overlays | kubectl diff -f -
+kubectl kustomize overlays | kubectl apply -f -
 ```
