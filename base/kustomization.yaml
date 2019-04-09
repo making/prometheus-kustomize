@@ -4,7 +4,7 @@ resources:
 - grafana-zipkin.yml
 - grafana-spring-cloud-gateway.yml
 - grafana-ingress-nginx.yml
-- grafana-system-overview.yml
+- grafana-system.yml
 #- grafana-pks.yml
 - grafana-postgres.yml
 - grafana-bosh.yml

@@ -19,9 +19,11 @@ kubectl create -n monitoring configmap grafana-dashboard-ingress-nginx \
   --from-file=base/grafana/ingress-nginx.json \
   --dry-run -oyaml > base/grafana-ingress-nginx.yml
 
-kubectl create -n monitoring configmap grafana-dashboard-system-overview \
+kubectl create -n monitoring configmap grafana-dashboard-system \
   --from-file=base/grafana/system-overview.json \
-  --dry-run -oyaml > base/grafana-system-overview.yml
+  --from-file=base/grafana/system-disk-space.json \
+  --from-file=base/grafana/system-disk-performance.json \
+  --dry-run -oyaml > base/grafana-system.yml
 
 kubectl create -n monitoring configmap grafana-dashboard-postgres \
   --from-file=base/grafana/postgres-overview.json \

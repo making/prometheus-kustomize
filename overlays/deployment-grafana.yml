@@ -61,15 +61,15 @@
 - op: add
   path: /spec/template/spec/containers/0/volumeMounts/-
   value:
-    mountPath: /grafana-dashboard-definitions/0/system-overview
-    name: grafana-dashboard-system-overview
+    mountPath: /grafana-dashboard-definitions/0/system
+    name: grafana-dashboard-system
     readOnly: false
 - op: add
   path: /spec/template/spec/volumes/-
   value:
     configMap:
-      name: grafana-dashboard-system-overview
-    name: grafana-dashboard-system-overview
+      name: grafana-dashboard-system
+    name: grafana-dashboard-system
 - op: add
   path: /spec/template/spec/containers/0/volumeMounts/-
   value:
