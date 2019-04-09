@@ -39,3 +39,15 @@
       namespace: bosh-azure
       job: zipkin
       pod: zipkin
+- job_name: "request-log-ingestor"
+  scrape_interval: 30s
+  scrape_timeout: 10s
+  metrics_path: /actuator/prometheus
+  scheme: https
+  static_configs:
+  - targets:
+    - request-log-ingestor.cfapps.io:443
+    labels:
+      namespace: pws
+      job: request-log-ingestor
+      pod: request-log-ingestor
