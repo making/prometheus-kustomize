@@ -51,3 +51,22 @@
       namespace: pws
       job: request-log-ingestor
       pod: request-log-ingestor
+- job_name: "node-exporter-elk"
+  scrape_interval: 30s
+  scrape_timeout: 10s
+  static_configs:
+  - targets:
+    - 40.115.177.222:9100
+- job_name: "node-exporter-zipkin"
+  scrape_interval: 30s
+  scrape_timeout: 10s
+  static_configs:
+  - targets:
+    - 40.115.181.175:9100
+- job_name: "node-exporter-bosh-home"
+  scrape_interval: 30s
+  scrape_timeout: 10s
+  scheme: https
+  static_configs:
+  - targets:
+    - bosh-node-exporter.home.ik.am:14161
