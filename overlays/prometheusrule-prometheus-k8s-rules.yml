@@ -207,3 +207,18 @@
         annotations:
           summary: "Endpoint `{{$labels.instance}}` SSL certificate will expire in {{humanizeDuration $value}}"
           description: "The SSL certificate at endpoint `{{$labels.instance}}` will expire in {{humanizeDuration $value}}"
+
+- op: add
+  path: /spec/groups/-
+  value:
+    name: concourse
+    rules:
+      - alert: ConcourseHighWorkerContainers
+        expr: avg(concourse_workers_containers) by(bosh_deployment, worker) > 200
+        for: 5m
+        labels:
+          service: concourse
+          severity: warning
+        annotations:
+          summary: "Concourse worker `{{$labels.bosh_deployment}}/{{$labels.worker}}` is reporting too many containers"
+          description: "Concourse worker `{{$labels.bosh_deployment}}/{{$labels.worker}}` is reporting too many containers: {{$value}}"

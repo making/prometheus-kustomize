@@ -91,3 +91,10 @@
   static_configs:
   - targets:
     - bosh-node-exporter.home.ik.am:14161
+- job_name: "concourse-exporter-home"
+  scrape_interval: 30s
+  scrape_timeout: 10s
+  scheme: https
+  static_configs:
+  - targets:
+    - concourse-exporter.home.ik.am:14161

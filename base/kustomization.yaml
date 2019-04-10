@@ -6,6 +6,7 @@ resources:
 - grafana-ingress-nginx.yml
 - grafana-system.yml
 - grafana-probe.yml
+- grafana-concourse.yml
 #- grafana-pks.yml
 - grafana-postgres.yml
 - grafana-bosh.yml
