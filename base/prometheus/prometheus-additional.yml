@@ -1,3 +1,32 @@
+- job_name: blackbox
+  metrics_path: /probe
+  params:
+    module:
+    - http
+  static_configs:
+  - targets:
+    - https://blog.ik.am
+    - https://blog.ik.am/entries/412
+    - https://blog.ik.am/actuator/health
+    - https://blog-api.ik.am/actuator/health
+    - https://k8s.bosh.tokyo/healthz
+    - https://uaa.bosh.tokyo/info
+    - https://10.0.8.252:25555/info
+    - https://zipkin.dev.ik.am/actuator/health
+    - https://concourse.ik.am:14161/api/v1/info
+  relabel_configs:
+  - source_labels: [__address__]
+    regex: (.*)
+    target_label: __param_target
+    replacement: ${1}
+  - source_labels: [__param_target]
+    regex: (.*)
+    target_label: instance
+    replacement: ${1}
+  - source_labels: []
+    regex: .*
+    target_label: __address__
+    replacement: 10.0.8.4:9115
 - job_name: "node-exporter"
   scrape_interval: 30s
   dns_sd_configs:
@@ -19,14 +48,6 @@
     - "q-s4.uaa-db.*.cfcr.bosh"
     type: "A"
     port: 9187
-# - job_name: "wavefront-proxy"
-#   scrape_interval: 30s
-#   scrape_timeout: 10s
-#   metrics_path: /actuator/prometheus
-#   scheme: https
-#   static_configs:
-#   - targets:
-#     - wavefront-proxy-exporter.cfapps.io:443
 - job_name: "zipkin"
   scrape_interval: 30s
   scrape_timeout: 10s

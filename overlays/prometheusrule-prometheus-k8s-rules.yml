@@ -157,3 +157,53 @@
         annotations:
           summary: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` will run out of persistent disk in {{humanizeDuration 14400}}"
           description: "BOSH Job `{{$labels.environment}}/{{$labels.bosh_name}}/{{$labels.bosh_deployment}}/{{$labels.bosh_job_name}}/{{$labels.bosh_job_index}}` persistent disk will be used more than 90% in {{humanizeDuration 14400}}"
+
+- op: add
+  path: /spec/groups/-
+  value:
+    name: probe
+    rules:
+      - alert: ProbeUnsuccessful
+        expr: min(probe_success) by(instance) != 1
+        for: 5m
+        labels:
+          service: probe
+          severity: critical
+        annotations:
+          summary: "Endpoint `{{$labels.instance}}` unsuccessful probe"
+          description: "The probe against endpoint `{{$labels.instance}}` has been unsuccessful during the last 5m"
+
+      - alert: ProbeHighDuration
+        expr: avg(probe_duration_seconds) by(instance) > 1
+        for: 5m
+        labels:
+          service: probe
+          severity: warning
+        annotations:
+          summary: "Endpoint `{{$labels.instance}}` probe took more than 1 second"
+          description: "The probe against endpoint `{{$labels.instance}}` took {{$value}} seconds during the last 5m"
+
+- op: add
+  path: /spec/groups/-
+  value:
+    name: ssl
+    rules:
+      - alert: ProbeSSLCertExpiryWarning
+        expr: avg(probe_ssl_earliest_cert_expiry) by(instance) - time() < 604800
+        for: 5m
+        labels:
+          service: probe
+          severity: warning
+        annotations:
+          summary: "Endpoint `{{$labels.instance}}` SSL certificate will expire in {{humanizeDuration $value}}"
+          description: "The SSL certificate at endpoint `{{$labels.instance}}` will expire in {{humanizeDuration $value}}"
+
+      - alert: ProbeSSLCertExpiryCritical
+        expr: avg(probe_ssl_earliest_cert_expiry) by(instance) - time() < 86400
+        for: 5m
+        labels:
+          service: probe
+          severity: critical
+        annotations:
+          summary: "Endpoint `{{$labels.instance}}` SSL certificate will expire in {{humanizeDuration $value}}"
+          description: "The SSL certificate at endpoint `{{$labels.instance}}` will expire in {{humanizeDuration $value}}"

@@ -38,6 +38,10 @@ kubectl create -n monitoring configmap grafana-dashboard-bosh \
   --from-file=base/grafana/bosh-system-overview.json \
   --dry-run -oyaml > base/grafana-bosh.yml
 
+kubectl create -n monitoring configmap grafana-dashboard-probe \
+  --from-file=base/grafana/probe-https-summary.json \
+  --dry-run -oyaml > base/grafana-probe.yml
+
 kubectl create -n monitoring configmap grafana-dashboard-pks \
   --from-file=./base/wavefront-proxy-exporter/grafana/overview.json \
   --from-file=./base/wavefront-proxy-exporter/grafana/namespace.json \
