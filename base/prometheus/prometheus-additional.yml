@@ -13,7 +13,7 @@
     - https://uaa.bosh.tokyo/info
     - https://10.0.8.252:25555/info
     - https://zipkin.dev.ik.am/actuator/health
-    - https://concourse.ik.am:14161/api/v1/info
+    - https://concourse.ik.am/api/v1/info
   relabel_configs:
   - source_labels: [__address__]
     regex: (.*)
