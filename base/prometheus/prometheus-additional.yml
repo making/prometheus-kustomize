@@ -72,6 +72,18 @@
       namespace: pws
       job: request-log-ingestor
       pod: request-log-ingestor
+- job_name: "jjug-enquete"
+  scrape_interval: 30s
+  scrape_timeout: 10s
+  metrics_path: /actuator/prometheus
+  scheme: https
+  static_configs:
+  - targets:
+    - jjug-enquete.cfapps.io:443
+    labels:
+      namespace: pws
+      job: jjug-enquete
+      pod: jjug-enquete
 - job_name: "node-exporter-elk"
   scrape_interval: 30s
   scrape_timeout: 10s
@@ -90,11 +102,11 @@
   scheme: https
   static_configs:
   - targets:
-    - bosh-node-exporter.home.ik.am:14161
+    - bosh-node-exporter.home.ik.am:17457
 - job_name: "concourse-exporter-home"
   scrape_interval: 30s
   scrape_timeout: 10s
   scheme: https
   static_configs:
   - targets:
-    - concourse-exporter.home.ik.am:14161
+    - concourse-exporter.home.ik.am:17457
