@@ -15,6 +15,6 @@ route:
 receivers:
 - name: default
   slack_configs:
-  - api_url: https://hooks.slack.com/services/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
+  - api_url: https://hooks.slack.com/services/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
     channel: alert
     send_resolved: true

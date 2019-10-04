@@ -14,6 +14,7 @@
     - https://10.0.8.252:25555/info
     - https://zipkin.dev.ik.am/actuator/health
     - https://concourse.ik.am/api/v1/info
+    - https://bosh-node-exporter.home.ik.am:14073
   relabel_configs:
   - source_labels: [__address__]
     regex: (.*)
@@ -120,11 +121,39 @@
   scheme: https
   static_configs:
   - targets:
-    - bosh-node-exporter.home.ik.am:17457
+    - bosh-node-exporter.home.ik.am:14073
 - job_name: "concourse-exporter-home"
   scrape_interval: 30s
   scrape_timeout: 10s
   scheme: https
   static_configs:
   - targets:
-    - concourse-exporter.home.ik.am:17457
+    - concourse-exporter.home.ik.am:14073
+- job_name: pushgateway
+  scrape_interval: 30s
+  scrape_timeout: 10s
+  scheme: https
+  static_configs:
+  - targets:
+    - pushgateway.k8s.bosh.tokyo:443
+# - job_name: "pivotal-io-2019"
+#   scrape_interval: 30s
+#   scrape_timeout: 10s
+#   metrics_path: /metrics/connected
+#   scheme: https
+#   static_configs:
+#   - targets:
+#     - prometheus-rsocket-proxy.apps.pcfone.io:443
+#   metric_relabel_configs:
+#   - source_labels: [space_name]
+#     regex: (.*)
+#     target_label: namespace
+#     replacement: ${1}
+#   - source_labels: [app_name]
+#     regex: (.*)
+#     target_label: job
+#     replacement: ${1}
+#   - source_labels: [cf_instance_id]
+#     regex: (.*)
+#     target_label: pod
+#     replacement: ${1}
