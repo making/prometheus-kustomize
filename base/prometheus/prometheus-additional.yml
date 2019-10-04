@@ -13,8 +13,6 @@
     - https://uaa.bosh.tokyo/info
     - https://10.0.8.252:25555/info
     - https://zipkin.dev.ik.am/actuator/health
-    - https://concourse.ik.am/api/v1/info
-    - https://bosh-node-exporter.home.ik.am:14073
   relabel_configs:
   - source_labels: [__address__]
     regex: (.*)
@@ -79,18 +77,6 @@
       namespace: bosh-azure
       job: zipkin
       pod: zipkin
-- job_name: "request-log-ingestor"
-  scrape_interval: 30s
-  scrape_timeout: 10s
-  metrics_path: /actuator/prometheus
-  scheme: https
-  static_configs:
-  - targets:
-    - request-log-ingestor.cfapps.io:443
-    labels:
-      namespace: pws
-      job: request-log-ingestor
-      pod: request-log-ingestor
 - job_name: "jjug-enquete"
   scrape_interval: 30s
   scrape_timeout: 10s
@@ -109,26 +95,32 @@
   static_configs:
   - targets:
     - 40.115.177.222:9100
-- job_name: "node-exporter-zipkin"
-  scrape_interval: 30s
-  scrape_timeout: 10s
-  static_configs:
-  - targets:
-    - 40.115.181.175:9100
-- job_name: "node-exporter-bosh-home"
-  scrape_interval: 30s
-  scrape_timeout: 10s
-  scheme: https
-  static_configs:
-  - targets:
-    - bosh-node-exporter.home.ik.am:14073
-- job_name: "concourse-exporter-home"
-  scrape_interval: 30s
-  scrape_timeout: 10s
-  scheme: https
-  static_configs:
-  - targets:
-    - concourse-exporter.home.ik.am:14073
+- job_name: cluster-metric-sinks
+  dns_sd_configs:
+  - names:
+    - q-s4.worker.*.*.bosh.
+    type: A
+    port: 31000
+# - job_name: "node-exporter-zipkin"
+#   scrape_interval: 30s
+#   scrape_timeout: 10s
+#   static_configs:
+#   - targets:
+#     - 40.115.181.175:9100
+# - job_name: "node-exporter-bosh-home"
+#   scrape_interval: 30s
+#   scrape_timeout: 10s
+#   scheme: https
+#   static_configs:
+#   - targets:
+#     - bosh-node-exporter.home.ik.am:14073
+# - job_name: "concourse-exporter-home"
+#   scrape_interval: 30s
+#   scrape_timeout: 10s
+#   scheme: https
+#   static_configs:
+#   - targets:
+#     - concourse-exporter.home.ik.am:14073
 - job_name: pushgateway
   scrape_interval: 30s
   scrape_timeout: 10s
