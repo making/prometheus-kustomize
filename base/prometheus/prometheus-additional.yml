@@ -48,24 +48,24 @@
     - "q-s4.uaa-db.*.cfcr.bosh"
     type: "A"
     port: 9187
-# - job_name: prometheus-proxy-connected
-#   scrape_interval: 30s
-#   scrape_timeout: 10s
-#   metrics_path: /metrics/connected
-#   dns_sd_configs:
-#   - names:
-#     - prometheus-proxy.monitoring-tools.svc.cluster.local
-#     type: "A"
-#     port: 8080
-# - job_name: prometheus-proxy
-#   scrape_interval: 1m
-#   scrape_timeout: 10s
-#   metrics_path: /metrics/proxy
-#   dns_sd_configs:
-#   - names:
-#     - prometheus-proxy.monitoring-tools.svc.cluster.local
-#     type: "A"
-#     port: 8080
+- job_name: prometheus-proxy-connected
+  scrape_interval: 30s
+  scrape_timeout: 10s
+  metrics_path: /metrics/connected
+  dns_sd_configs:
+  - names:
+    - prometheus-proxy.monitoring-tools.svc.cluster.local
+    type: "A"
+    port: 8080
+- job_name: prometheus-proxy
+  scrape_interval: 1m
+  scrape_timeout: 10s
+  metrics_path: /metrics/proxy
+  dns_sd_configs:
+  - names:
+    - prometheus-proxy.monitoring-tools.svc.cluster.local
+    type: "A"
+    port: 8080
 - job_name: "zipkin"
   scrape_interval: 30s
   scrape_timeout: 10s
