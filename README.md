@@ -3,10 +3,6 @@ kubectl create -n monitoring configmap grafana-dashboard-micrometer \
   --from-file=base/grafana/micrometer.json \
   --dry-run -oyaml > base/grafana-micrometer.yml
 
-kubectl create -n monitoring configmap grafana-dashboard-hystrix \
-  --from-file=base/grafana/hystrix.json \
-  --dry-run -oyaml > base/grafana-hystrix.yml
-
 kubectl create -n monitoring configmap grafana-dashboard-zipkin \
   --from-file=base/grafana/zipkin.json \
   --dry-run -oyaml > base/grafana-zipkin.yml
@@ -41,20 +37,6 @@ kubectl create -n monitoring configmap grafana-dashboard-bosh \
 kubectl create -n monitoring configmap grafana-dashboard-probe \
   --from-file=base/grafana/probe-https-summary.json \
   --dry-run -oyaml > base/grafana-probe.yml
-
-kubectl create -n monitoring configmap grafana-dashboard-concourse \
-  --from-file=base/grafana/concourse-overview.json \
-  --from-file=base/grafana/concourse-pipelines.json \
-  --dry-run -oyaml > base/grafana-concourse.yml
-
-kubectl create -n monitoring configmap grafana-dashboard-pks \
-  --from-file=./base/wavefront-proxy-exporter/grafana/overview.json \
-  --from-file=./base/wavefront-proxy-exporter/grafana/namespace.json \
-  --from-file=./base/wavefront-proxy-exporter/grafana/node.json \
-  --from-file=./base/wavefront-proxy-exporter/grafana/pod.json \
-  --from-file=./base/wavefront-proxy-exporter/grafana/pod-container.json \
-  --from-file=./base/wavefront-proxy-exporter/grafana/deployment.json \
-  --dry-run -o yaml > base/grafana-pks.yml
 
 kubectl create -n monitoring secret generic additional-scrape-configs \
   --from-file=base/prometheus/prometheus-additional.yml \

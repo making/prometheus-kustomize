@@ -1,13 +1,10 @@
 resources:
 - grafana-micrometer.yml
-- grafana-hystrix.yml
 - grafana-zipkin.yml
 - grafana-spring-cloud-gateway.yml
 - grafana-ingress-nginx.yml
 - grafana-system.yml
 - grafana-probe.yml
-- grafana-concourse.yml
-#- grafana-pks.yml
 - grafana-postgres.yml
 - grafana-bosh.yml
 - grafana-secret.yml

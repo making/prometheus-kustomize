@@ -13,6 +13,7 @@
     - https://uaa.bosh.tokyo/info
     - https://10.0.8.252:25555/info
     - https://zipkin.dev.ik.am/actuator/health
+    - https://blog-rsocket.ik.am/actuator/health
   relabel_configs:
   - source_labels: [__address__]
     regex: (.*)
@@ -47,24 +48,24 @@
     - "q-s4.uaa-db.*.cfcr.bosh"
     type: "A"
     port: 9187
-- job_name: prometheus-proxy-connected
-  scrape_interval: 30s
-  scrape_timeout: 10s
-  metrics_path: /metrics/connected
-  dns_sd_configs:
-  - names:
-    - prometheus-proxy.monitoring-tools.svc.cluster.local
-    type: "A"
-    port: 8080
-- job_name: prometheus-proxy
-  scrape_interval: 1m
-  scrape_timeout: 10s
-  metrics_path: /metrics/proxy
-  dns_sd_configs:
-  - names:
-    - prometheus-proxy.monitoring-tools.svc.cluster.local
-    type: "A"
-    port: 8080
+# - job_name: prometheus-proxy-connected
+#   scrape_interval: 30s
+#   scrape_timeout: 10s
+#   metrics_path: /metrics/connected
+#   dns_sd_configs:
+#   - names:
+#     - prometheus-proxy.monitoring-tools.svc.cluster.local
+#     type: "A"
+#     port: 8080
+# - job_name: prometheus-proxy
+#   scrape_interval: 1m
+#   scrape_timeout: 10s
+#   metrics_path: /metrics/proxy
+#   dns_sd_configs:
+#   - names:
+#     - prometheus-proxy.monitoring-tools.svc.cluster.local
+#     type: "A"
+#     port: 8080
 - job_name: "zipkin"
   scrape_interval: 30s
   scrape_timeout: 10s
@@ -89,12 +90,18 @@
       namespace: pws
       job: jjug-enquete
       pod: jjug-enquete
-- job_name: "node-exporter-elk"
+- job_name: "jsug-enquete"
   scrape_interval: 30s
   scrape_timeout: 10s
+  metrics_path: /actuator/prometheus
+  scheme: https
   static_configs:
   - targets:
-    - 40.115.177.222:9100
+    - jsug-enquete.cfapps.io:443
+    labels:
+      namespace: pws
+      job: jsug-enquete
+      pod: jsug-enquete
 - job_name: cluster-metric-sinks
   dns_sd_configs:
   - names:
@@ -121,13 +128,13 @@
 #   static_configs:
 #   - targets:
 #     - concourse-exporter.home.ik.am:14073
-- job_name: pushgateway
-  scrape_interval: 30s
-  scrape_timeout: 10s
-  scheme: https
-  static_configs:
-  - targets:
-    - pushgateway.k8s.bosh.tokyo:443
+# - job_name: pushgateway
+#   scrape_interval: 30s
+#   scrape_timeout: 10s
+#   scheme: https
+#   static_configs:
+#   - targets:
+#     - pushgateway.k8s.bosh.tokyo:443
 # - job_name: "pivotal-io-2019"
 #   scrape_interval: 30s
 #   scrape_timeout: 10s
