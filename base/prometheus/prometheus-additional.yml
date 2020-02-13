@@ -75,9 +75,10 @@
   - targets:
     - zipkin.dev.ik.am:443
     labels:
-      namespace: bosh-azure
-      job: zipkin
-      pod: zipkin
+      organization: maki
+      space: observability
+      application: zipkin
+      instance_id: zipkin:0
 - job_name: "jjug-enquete"
   scrape_interval: 30s
   scrape_timeout: 10s
@@ -87,9 +88,10 @@
   - targets:
     - jjug-enquete.cfapps.io:443
     labels:
-      namespace: pws
-      job: jjug-enquete
-      pod: jjug-enquete
+      organization: APJ
+      space: production
+      application: jjug-enquete
+      instance_id: jjug-enquete:0
 - job_name: "jsug-enquete"
   scrape_interval: 30s
   scrape_timeout: 10s
@@ -99,9 +101,10 @@
   - targets:
     - jsug-enquete.cfapps.io:443
     labels:
-      namespace: pws
-      job: jsug-enquete
-      pod: jsug-enquete
+      organization: APJ
+      space: production
+      application: jsug-enquete
+      instance_id: jsug-enquete:0
 - job_name: cluster-metric-sinks
   dns_sd_configs:
   - names:

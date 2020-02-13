@@ -1,6 +1,7 @@
 ```
 kubectl create -n monitoring configmap grafana-dashboard-micrometer \
-  --from-file=base/grafana/micrometer.json \
+  --from-file=base/grafana/spring-boot.json \
+  --from-file=base/grafana/jvm.json \
   --dry-run -oyaml > base/grafana-micrometer.yml
 
 kubectl create -n monitoring configmap grafana-dashboard-zipkin \
