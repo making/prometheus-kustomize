@@ -1,0 +1,13 @@
+apiVersion: gateway.cloud.ik.am/v1beta1
+kind: RouteDefinition
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  serviceName: prometheus-k8s
+  route:
+    predicates:
+    - Host=prometheus.k8s.bosh.tokyo
+    filters:
+    - RequestLogging=
+    - PreserveHostHeader

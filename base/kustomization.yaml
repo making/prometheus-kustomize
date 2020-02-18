@@ -11,6 +11,7 @@ resources:
 - additional-scrape-configs.yml
 - alertmanager-secret.yml
 - ingress-grafana.yml
+- prometheus-rd.yml
 - ./kube-prometheus/manifests/00namespace-namespace.yaml
 - ./kube-prometheus/manifests/0prometheus-operator-0alertmanagerCustomResourceDefinition.yaml
 - ./kube-prometheus/manifests/0prometheus-operator-0prometheusCustomResourceDefinition.yaml
