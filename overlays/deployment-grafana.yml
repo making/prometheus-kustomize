@@ -13,18 +13,6 @@
 - op: add
   path: /spec/template/spec/containers/0/volumeMounts/-
   value:
-    mountPath: /grafana-dashboard-definitions/0/hystrix
-    name: grafana-dashboard-hystrix
-    readOnly: false
-- op: add
-  path: /spec/template/spec/volumes/-
-  value:
-    configMap:
-      name: grafana-dashboard-hystrix
-    name: grafana-dashboard-hystrix
-- op: add
-  path: /spec/template/spec/containers/0/volumeMounts/-
-  value:
     mountPath: /grafana-dashboard-definitions/0/zipkin
     name: grafana-dashboard-zipkin
     readOnly: false
@@ -97,18 +85,6 @@
 - op: add
   path: /spec/template/spec/containers/0/volumeMounts/-
   value:
-    mountPath: /grafana-dashboard-definitions/0/concourse
-    name: grafana-dashboard-concourse
-    readOnly: false
-- op: add
-  path: /spec/template/spec/volumes/-
-  value:
-    configMap:
-      name: grafana-dashboard-concourse
-    name: grafana-dashboard-concourse
-- op: add
-  path: /spec/template/spec/containers/0/volumeMounts/-
-  value:
     mountPath: /grafana-dashboard-definitions/0/bosh
     name: grafana-dashboard-bosh
     readOnly: false
@@ -118,18 +94,6 @@
     configMap:
       name: grafana-dashboard-bosh
     name: grafana-dashboard-bosh
-# - op: add
-#   path: /spec/template/spec/containers/0/volumeMounts/-
-#   value:
-#     mountPath: /grafana-dashboard-definitions/0/pks
-#     name: grafana-dashboard-pks
-#     readOnly: false
-# - op: add
-#   path: /spec/template/spec/volumes/-
-#   value:
-#     configMap:
-#       name: grafana-dashboard-pks
-#     name: grafana-dashboard-pks
 - op: add
   path: /spec/template/spec/containers/0/env
   value:
