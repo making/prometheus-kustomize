@@ -301,7 +301,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(jvm_memory_used_bytes{application=\"$application\", instance_id=~\"$instance_id\", area=\"nonheap\"})*100/sum(jvm_memory_max_bytes{application=\"$application\",instance_id=~\"$instance_id\", area=\"nonheap\"})",
+          "expr": "sum(jvm_memory_used_bytes{application=\"$application\", instance_id=~\"$instance_id\", area=\"nonheap\"})*100/(sum(jvm_memory_max_bytes{application=\"$application\",instance_id=~\"$instance_id\", area=\"nonheap\"}) - sum(jvm_memory_max_bytes{instance_id=~\"$instance_id\", application=\"$application\", id=\"Compressed Class Space\"}))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
